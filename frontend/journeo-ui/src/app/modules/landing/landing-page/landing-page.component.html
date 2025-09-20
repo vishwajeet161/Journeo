@@ -1,0 +1,30 @@
+ <div class="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-500 to-purple-600 text-white">
+      <div class="text-center space-y-6">
+        <h1 class="text-5xl font-bold">Welcome to Journeo</h1>
+        <p class="text-lg opacity-90">Your one-stop platform for Train, Bus & Flight bookings</p>
+
+        <!-- Service cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+          <div class="p-6 bg-white text-gray-900 rounded-2xl shadow-lg hover:scale-105 transition cursor-pointer"
+               (click)="navigateTo('train')">
+            🚆 <h2 class="font-semibold text-xl mt-2">Train Tickets</h2>
+          </div>
+          <div class="p-6 bg-white text-gray-900 rounded-2xl shadow-lg hover:scale-105 transition cursor-pointer"
+               (click)="navigateTo('bus')">
+            🚌 <h2 class="font-semibold text-xl mt-2">Bus Tickets</h2>
+          </div>
+          <div class="p-6 bg-white text-gray-900 rounded-2xl shadow-lg hover:scale-105 transition cursor-pointer"
+               (click)="navigateTo('flight')">
+            ✈️ <h2 class="font-semibold text-xl mt-2">Flight Tickets</h2>
+          </div>
+        </div>
+
+        <!-- Login button -->
+        <div class="mt-10">
+          <button routerLink="/login"
+                  class="px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-xl shadow-md hover:bg-yellow-500">
+            🔑 Login / Signup
+          </button>
+        </div>
+      </div>
+    </div>
