@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-bus-ticket',
+  selector: 'journeo-bus-ticket',
   imports: [],
   templateUrl: './bus-ticket.component.html',
   styleUrl: './bus-ticket.component.scss'
