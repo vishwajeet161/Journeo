@@ -10,51 +10,63 @@
 	</parent>
 	<groupId>com.journeo</groupId>
 	<artifactId>journeo-parent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>  <!-- ✅ CHANGED: Critical for parent POM -->
 	<name>journeo-parent</name>
 	<description>Journeo - Travel booking service</description>
-	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
+	
 	<properties>
 		<java.version>21</java.version>
+		<spring-cloud.version>2024.0.0</spring-cloud.version>  <!-- ✅ ADDED: Spring Cloud version -->
+		<maven.compiler.source>21</maven.compiler.source>
+		<maven.compiler.target>21</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-
+	
+	<!-- ✅ ADDED: Module declarations -->
+	<modules>
+		<module>../service-discovery</module>
+		<module>../api-gateway</module>
+		<module>../common</module>
+		<!-- Add other services as you create them -->
+		<!-- <module>../user-service</module> -->
+		<!-- <module>../train-service</module> -->
+		<!-- <module>../bus-service</module> -->
+		<!-- <module>../flight-service</module> -->
+		<!-- <module>../payment-service</module> -->
+	</modules>
+	
+	<!-- ✅ ADDED: Dependency Management for Spring Cloud -->
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<!-- ✅ REMOVED: Dependencies section (moved to individual modules) -->
+	<!-- Parent POM should not have direct dependencies -->
+	
 	<build>
 		<plugins>
+			<!-- ✅ ADDED: Maven Compiler Plugin -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<source>21</source>
+					<target>21</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
 			</plugin>
+			
+			<!-- ✅ REMOVED: Spring Boot Maven Plugin (should be in individual modules) -->
 		</plugins>
 	</build>
-
 </project>
