@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {routes} from '../../../app.routes';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'journeo-landing-page',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './landing-page.component.html',
   styleUrl: './landing-page.component.scss'
 })
