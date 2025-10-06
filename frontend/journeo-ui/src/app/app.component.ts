@@ -6,7 +6,7 @@ import { LandingPageComponent } from "./modules/landing/landing-page/landing-pag
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [LandingPageComponent]
+  imports: [LandingPageComponent, RouterOutlet]
 })
 export class AppComponent {
   title = 'journeo-ui';
