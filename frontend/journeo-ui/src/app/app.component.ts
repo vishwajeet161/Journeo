@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { LandingPageComponent } from "./modules/landing/landing-page/landing-page.component";
+import { NavbarComponent } from './modules/shared-module/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  imports: [LandingPageComponent, RouterOutlet]
+  imports: [RouterOutlet, NavbarComponent]
 })
 export class AppComponent {
   title = 'journeo-ui';
+  navConf: any = {
+    isLoggedIn: false,
+    userRole: 'guest'
+  };
 }
