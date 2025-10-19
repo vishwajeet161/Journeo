@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  isLoggedIn = false; // Later replace with AuthService
+
+  constructor() {
+  }
+  
 }

@@ -10,6 +10,7 @@
 
       <!-- Right Navigation -->
       <div class="flex items-center space-x-4">
+        <a href="#" class="text-gray-700 hover:text-blue-600 font-medium hidden md:block" [routerLink]="['/home']">Home</a>
         <ng-container *ngIf="isLoggedIn">
              <a href="#" class="text-gray-700 hover:text-blue-600 font-medium hidden md:block">My Trips</a>
         </ng-container>
