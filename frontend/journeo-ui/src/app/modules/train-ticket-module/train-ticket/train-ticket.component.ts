@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'journeo-train-ticket',
@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class TrainTicketComponent {
 
+  @Input() navConf: any;
+
+  constructor() {
+  }
 }

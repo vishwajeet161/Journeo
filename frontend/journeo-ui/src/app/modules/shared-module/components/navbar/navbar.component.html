@@ -1,0 +1,35 @@
+<!-- Navigation Bar -->
+<nav class="tab bg-white shadow-lg sticky top-0 z-50">
+  <div class="container tabcontainer mx-auto px-4">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <img src="Journeo-logo.jpeg" alt="Journeo Logo" class="h-15 w-15 mr-2 Journeo-logo">
+        <div class="text-2xl font-bold text-white-700">Journeo</div>
+      </div>
+
+      <!-- Right Navigation -->
+      <div class="flex items-center space-x-4">
+        <ng-container *ngIf="isLoggedIn">
+             <a href="#" class="text-gray-700 hover:text-blue-600 font-medium hidden md:block">My Trips</a>
+        </ng-container>
+        <a href="#" class="text-gray-700 hover:text-blue-600 font-medium hidden md:block">Help</a>
+        <ng-container *ngIf="isLoggedIn">
+            <button class="text-gray-700 hover:text-blue-600 font-medium" [routerLink]="['/home']">
+          Log Out
+        </button>
+        </ng-container>
+        <ng-container *ngIf="!isLoggedIn">
+            <button class="text-gray-700 hover:text-blue-600 font-medium" [routerLink]="['/login']">
+          Log In
+        </button>
+        </ng-container>
+       <ng-container *ngIf="!isLoggedIn">
+         <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
+          Sign Up
+        </button>
+       </ng-container>
+      </div>
+    </div>
+  </div>
+</nav>
