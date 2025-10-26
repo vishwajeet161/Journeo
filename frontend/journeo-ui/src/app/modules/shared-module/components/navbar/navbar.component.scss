@@ -1,11 +1,44 @@
-.Journeo-logo {
-  border-radius: 100%;
-  object-fit: cover;
-  justify-content: flex-start;
+// Smooth animations
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
 }
-.tab{
-    background-color:  rgb(255, 106, 0);
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-.tabcontainer{
-  max-width: 100%;
+
+// Backdrop blur support
+@supports (backdrop-filter: blur(12px)) {
+  nav {
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.95);
+  }
+}
+
+// Custom scrollbar for dropdown
+.user-dropdown {
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
 }

@@ -1,23 +1,52 @@
-import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { CommonModule, NgIf } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'journeo-navbar',
-  imports: [RouterLink, CommonModule],
+  imports: [NgIf, RouterModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  @Input() conf:any;
-  isLoggedIn = false; // Later replace with AuthService
-  constructor(private router: Router ) {
+  isLoggedIn = false; // Change based on auth state
+  userName = 'Vishwajeet'; // Dynamic user name
+  showUserDropdown = false;
+  isMobileMenuOpen = false;
+
+  // Toggle mobile menu
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+    if (this.isMobileMenuOpen) {
+      this.showUserDropdown = false; // Close user dropdown when mobile menu opens
+    }
   }
 
-  ngOnInit() {
-    console.log(this.conf);
-    console.log(this.router.url);
-    this.isLoggedIn = this.conf?.isLoggedIn || false;
+  closeMobileMenu() {
+    this.isMobileMenuOpen = false;
+  }
+
+  // Toggle user dropdown
+  toggleUserDropdown() {
+    this.showUserDropdown = !this.showUserDropdown;
+  }
+
+  // Get user initial for avatar
+  getUserInitial(): string {
+    return this.userName ? this.userName.charAt(0).toUpperCase() : 'U';
+  }
+
+  // Logout function
+  logout() {
+    this.isLoggedIn = false;
+    this.showUserDropdown = false;
+    this.isMobileMenuOpen = false;
+    // Add your logout logic here
+    console.log('User logged out');
+  }
+
+  // Close dropdowns when clicking outside (you can implement this)
+  onDocumentClick(event: Event) {
+    // Implementation for closing dropdowns when clicking outside
   }
 }
