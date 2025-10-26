@@ -1,35 +1,196 @@
-<!-- Navigation Bar -->
-<nav class="tab bg-white shadow-lg sticky top-0 z-50">
-  <div class="container tabcontainer mx-auto px-4">
+<nav class="bg-white/95 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-gray-200/60">
+  <div class="container mx-auto px-4">
     <div class="flex items-center justify-between h-16">
-      <!-- Logo -->
-      <div class="flex items-center">
-        <img src="Journeo-logo.jpeg" alt="Journeo Logo" class="h-15 w-15 mr-2 Journeo-logo">
-        <div class="text-2xl font-bold text-white-700">Journeo</div>
+      <!-- Logo Section -->
+      <div class="flex items-center space-x-3">
+        <img 
+          src="Journeo-logo.jpeg" 
+          alt="Journeo Logo" 
+          class="h-10 w-10 rounded-lg shadow-sm"
+        >
+        <a 
+          routerLink="/home" 
+          class="text-2xl font-bold bg-gradient-to-r from-blue to-blue-600 bg-clip-text text-transparent from-blue-500 to-purple-600 transition-all duration-300"
+        >
+          Journeo
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-1">
+        <a 
+          routerLink="/home" 
+          routerLinkActive="bg-blue-500 text-blue border-b-2 border-blue-500"
+          class="px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+        >
+          Home
+        </a>
+        
+        <ng-container *ngIf="isLoggedIn">
+          <a 
+            routerLink="/my-trips" 
+            routerLinkActive="bg-blue-50 text-blue-500 border-b-2 border-blue-700"
+            class="px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+          >
+            My Trips
+          </a>
+        </ng-container>
+        
+        <a 
+          routerLink="/" 
+          routerLinkActive="bg-blue-50 text-blue border-b-2 border-blue-500"
+          class="px-4 py-2 text-gray-700 hover:bg-blue-50 rounded-lg font-medium transition-all duration-200"
+        >
+          Help
+        </a>
       </div>
 
       <!-- Right Navigation -->
-      <div class="flex items-center space-x-4">
-        <a href="#" class="text-gray-700 hover:text-blue-600 font-medium hidden md:block" [routerLink]="['/home']">Home</a>
+      <div class="flex items-center space-x-3">
+        <!-- User Section when logged in -->
         <ng-container *ngIf="isLoggedIn">
-             <a href="#" class="text-gray-700 hover:text-blue-600 font-medium hidden md:block">My Trips</a>
+          <div class="flex items-center space-x-3">
+            <!-- Notification Bell -->
+            <button class="relative p-2 text-gray-600 hover:text-journeo-blue hover:bg-blue-50 rounded-lg transition-colors duration-200">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM10.5 3.75a6 6 0 010 12v0a6 6 0 010-12v0z"/>
+              </svg>
+              <span class="absolute -top-1 -right-1 h-4 w-4 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
+                3
+              </span>
+            </button>
+
+            <!-- User Avatar & Dropdown -->
+            <div class="relative" (click)="toggleUserDropdown()">
+              <button class="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                <div class="h-8 w-8 bg-gradient-to-r from-journeo-blue to-blue-600 rounded-full flex items-center justify-center text-white text-sm font-medium">
+                  {{ getUserInitial() }}
+                </div>
+                <span class="text-gray-700 font-medium hidden lg:block">{{ userName }}</span>
+                <svg class="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                </svg>
+              </button>
+
+              <!-- User Dropdown Menu -->
+              <div 
+                *ngIf="showUserDropdown"
+                class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 py-1 z-50"
+              >
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-journeo-blue transition-colors">
+                  Profile
+                </a>
+                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50 hover:text-journeo-blue transition-colors">
+                  Settings
+                </a>
+                <div class="border-t border-gray-200 my-1"></div>
+                <button 
+                  (click)="logout()"
+                  class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+                >
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
         </ng-container>
-        <a href="#" class="text-gray-700 hover:text-blue-600 font-medium hidden md:block">Help</a>
-        <ng-container *ngIf="isLoggedIn">
-            <button class="text-gray-700 hover:text-blue-600 font-medium" [routerLink]="['/home']">
-          Log Out
-        </button>
-        </ng-container>
+
+        <!-- Auth Section when not logged in -->
         <ng-container *ngIf="!isLoggedIn">
-            <button class="text-gray-700 hover:text-blue-600 font-medium" [routerLink]="['/login']">
-          Log In
-        </button>
+          <div class="flex items-center space-x-3">
+            <button 
+              routerLink="/login"
+              class="px-4 py-2 text-gray-700 hover:text-blue-500 font-medium transition-colors duration-200 cursor-pointer"
+            >
+              Log In
+            </button>
+            <button 
+              routerLink="/register"
+              class="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-blue-700 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300"
+            >
+              Sign Up
+            </button>
+          </div>
         </ng-container>
-       <ng-container *ngIf="!isLoggedIn">
-         <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 font-medium">
-          Sign Up
+
+        <!-- Mobile Menu Button -->
+        <button 
+          (click)="toggleMobileMenu()"
+          class="md:hidden p-2 rounded-lg text-gray-700 hover:text-journeo-blue hover:bg-blue-50 transition-colors duration-200"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path 
+              stroke-linecap="round" 
+              stroke-linejoin="round" 
+              stroke-width="2" 
+              [attr.d]="isMobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'"
+            >
+            </path>
+          </svg>
         </button>
-       </ng-container>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div 
+      *ngIf="isMobileMenuOpen"
+      class="md:hidden bg-white border-t border-gray-200 py-2 px-4 space-y-1 animate-slideDown"
+    >
+      <a 
+        routerLink="/home" 
+        (click)="closeMobileMenu()"
+        class="block px-3 py-2 text-gray-700 hover:text-journeo-blue hover:bg-blue-50 rounded-lg font-medium transition-colors"
+      >
+        Home
+      </a>
+      
+      <ng-container *ngIf="isLoggedIn">
+        <a 
+          routerLink="/my-trips" 
+          (click)="closeMobileMenu()"
+          class="block px-3 py-2 text-gray-700 hover:text-journeo-blue hover:bg-blue-50 rounded-lg font-medium transition-colors"
+        >
+          My Trips
+        </a>
+      </ng-container>
+      
+      <a 
+        routerLink="/home" 
+        (click)="closeMobileMenu()"
+        class="block px-3 py-2 text-gray-700 hover:text-journeo-blue hover:bg-blue-50 rounded-lg font-medium transition-colors"
+      >
+        Help
+      </a>
+
+      <div class="border-t border-gray-200 pt-2 mt-2">
+        <ng-container *ngIf="!isLoggedIn">
+          <a 
+            routerLink="/login" 
+            (click)="closeMobileMenu()"
+            class="block px-3 py-2 text-gray-700 hover:text-journeo-blue hover:bg-blue-50 rounded-lg font-medium transition-colors"
+          >
+            Log In
+          </a>
+          <a 
+            routerLink="/register" 
+            (click)="closeMobileMenu()"
+            class="block px-3 py-2 bg-gradient-to-r from-journeo-blue to-blue-600 text-white rounded-lg text-center font-medium mt-2 shadow-lg"
+          >
+            Sign Up
+          </a>
+        </ng-container>
+        
+        <ng-container *ngIf="isLoggedIn">
+          <a href="#" class="block px-3 py-2 text-gray-700 hover:text-journeo-blue hover:bg-blue-50 rounded-lg font-medium transition-colors">
+            Profile
+          </a>
+          <button 
+            (click)="logout(); closeMobileMenu()"
+            class="block w-full text-left px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg font-medium transition-colors"
+          >
+            Sign Out
+          </button>
+        </ng-container>
       </div>
     </div>
   </div>
