@@ -10,7 +10,7 @@
 
 ## 🌍 About
 
-**Journeo** is a scalable train ticket booking platform inspired by IRCTC.  
+**Journeo** is a scalable travel ticket booking platform inspired by IRCTC.  
 It leverages a **microservices architecture** with a modern **Angular frontend** and **Spring Boot backend** for seamless performance, scalability, and reliability.
 
 ---
