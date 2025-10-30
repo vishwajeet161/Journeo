@@ -1,0 +1,80 @@
+// Custom styles for sign-in component
+:host {
+  display: block;
+}
+
+// Smooth transitions
+input, button, a {
+  transition: all 0.2s ease-in-out;
+}
+
+// Focus states
+input:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+// Loading animation
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+// Responsive adjustments
+@media (max-width: 1024px) {
+  .min-h-screen {
+    min-height: 100vh;
+  }
+}
+
+// Error state animations
+.border-red-300 {
+  border-color: #fca5a5;
+}
+
+// Social button hover effects
+.social-button {
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Backdrop blur support
+@supports (backdrop-filter: blur(12px)) {
+  .backdrop-blur-md {
+    backdrop-filter: blur(12px);
+  }
+}
+
+// Password toggle button
+.password-toggle {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
