@@ -29,7 +29,7 @@
 		<module>../api-gateway</module>
 		<module>../common</module>
 		<!-- Add other services as you create them -->
-		<!-- <module>../user-service</module> -->
+		<module>../user-service</module>
 		<!-- <module>../train-service</module> -->
 		<!-- <module>../bus-service</module> -->
 		<!-- <module>../flight-service</module> -->
