@@ -31,20 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-# Environment variables
-.env
-.env.local
-
-# Secrets
-*.pem
-*.key
-
-# Build
-target/
-logs/
-*.jar
-
-# OS
-.DS_Store
-Thumbs.db

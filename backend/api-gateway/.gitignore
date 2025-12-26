@@ -31,13 +31,3 @@ build/
 
 ### VS Code ###
 .vscode/
-
-# Same as user-service
-.env
-.env.local
-.idea/
-*.iml
-target/
-logs/
-*.jar
-.DS_Store
